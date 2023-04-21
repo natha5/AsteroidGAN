@@ -1,10 +1,13 @@
 import pygame
-
+from pygame.locals import *
 pygame.init()
 
 # handle import of gan output here
 
-screen = pygame.display.set_mode(800,800)
+SCREEN_WIDTH = 600
+SCREEN_HEIGHT = 500
+
+screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_WIDTH))
 
 
 values = {
@@ -27,3 +30,14 @@ values = {
 }
 
 
+bg_img = pygame.image.load("resources/stars-sky-night.jpg")
+bg_img = pygame.transform.scale(bg_img, (SCREEN_WIDTH,SCREEN_WIDTH))
+
+running = True
+while running:
+    screen.blit(bg_img,(0,0))
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            running = False
+    pygame.display.update()
+pygame.quit()
