@@ -64,10 +64,10 @@ def determine_color(albedo):
 
 def determine_dimensions(diameter):
     adjusted_diameter = diameter * 1000
-    if diameter >= 400:
-        return adjusted_diameter, adjusted_diameter
+    if diameter >= 400: # objects become spherical when diameter >= 400km
+        return diameter*10, diameter*10
     else:
-        return adjusted_diameter, adjusted_diameter/2
+        return diameter*10, (diameter/2)*10
 
 
 def draw_asteroid(values):
