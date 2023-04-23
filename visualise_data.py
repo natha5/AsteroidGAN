@@ -62,12 +62,13 @@ def determine_color(albedo):
 
     return color
 
+
 def determine_dimensions(diameter):
     adjusted_diameter = diameter * 1000
-    if diameter >= 400: # objects become spherical when diameter >= 400km
-        return diameter*10, diameter*10
+    if diameter >= 400:  # objects become spherical when diameter >= 400km
+        return diameter/10, diameter/10
     else:
-        return diameter*10, (diameter/2)*10
+        return diameter/10, (diameter/2)/10
 
 
 def draw_asteroid(values):
@@ -84,6 +85,6 @@ while running:
         if event.type == QUIT:
             running = False
 
-    pygame.draw.ellipse
+    draw_asteroid(values)
     pygame.display.update()
 pygame.quit()
