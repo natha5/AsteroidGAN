@@ -1,4 +1,6 @@
 import pygame
+import numpy as np
+import pandas as pd
 from pygame.locals import *
 
 pygame.init()
