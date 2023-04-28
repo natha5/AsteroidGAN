@@ -73,10 +73,7 @@ def generate_fakes():
     return X
 
 
-"""# Discriminator model
-This is a binary CNN classifier, to determine whether the input is 'real' or not
-"""
-
+# Discriminator model This is a binary CNN classifier, to determine whether the input is 'real' or not
 
 def make_discriminator():
     print("creating discriminator")
@@ -90,11 +87,7 @@ def make_discriminator():
     return model
 
 
-"""Generate random, fake samples for training discriminator
-
 # Putting the GAN together
-"""
-
 
 def make_gan(generator, discriminator):
     print("creating gan")
@@ -132,13 +125,13 @@ def training(generator, discriminator, gan, batch_size, n_epochs, data):
 
         print("Epoch : " + str(i + 1) + "/" + str(n_epochs))
 
-        x_real = data[current_row:half_batch + current_row]  # fix so its not 'head' and is seeing new data each time
+        x_real = data[current_row:half_batch + current_row]
         y_real = np.ones((half_batch, 16))
 
         current_row = current_row + half_batch
 
         x_fake = np.array([[]])
-        for i in range(half_batch):
+        for j in range(half_batch):
             current_fake = generate_fakes()
             x_fake = np.append(x_fake, current_fake)
 
@@ -151,7 +144,7 @@ def training(generator, discriminator, gan, batch_size, n_epochs, data):
 
         x_gan = np.array([[]])
 
-        for i in range(batch_size):
+        for j in range(batch_size):
             current_gan = generate_fakes()
             x_gan = np.append(x_gan, current_gan)
 
@@ -185,4 +178,4 @@ def run_program():
 
     print(value_to_use)
 
-    return(value_to_use)
+    return value_to_use
