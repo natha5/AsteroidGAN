@@ -127,11 +127,10 @@ def training(generator, discriminator, gan, batch_size, n_epochs, data):
 
     current_row = 0
 
-
     half_batch = int(batch_size / 2)
     for i in range(n_epochs):
 
-        print("Epoch : " + str(i + 1))
+        print("Epoch : " + str(i + 1) + "/" + str(n_epochs))
 
         x_real = data[current_row:half_batch + current_row]  # fix so its not 'head' and is seeing new data each time
         y_real = np.ones((half_batch, 16))
