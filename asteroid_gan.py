@@ -125,6 +125,8 @@ def training(generator, discriminator, gan, batch_size, n_epochs, data):
 
     print("training gan")
 
+    current_row = 0
+
     half_batch = int(batch_size / 2)
     for i in range(n_epochs):
 
