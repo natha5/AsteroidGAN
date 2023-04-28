@@ -116,7 +116,7 @@ LOSS = 'binary_crossentropy'
 METRICS = 'accuracy'
 
 BATCH_SIZE = 128
-N_EPOCHS = 10000
+N_EPOCHS = 2048
 VERBOSE = 1
 VALIDATION_SPLIT = 0.2
 
@@ -128,10 +128,13 @@ def training(generator, discriminator, gan, batch_size, n_epochs, data):
     half_batch = int(batch_size / 2)
     for i in range(n_epochs):
 
-        print("Epoch = " + str(i + 1))
+        print("Epoch : " + str(i + 1))
 
-        x_real = data.head(half_batch)  # fix so its not 'head' and is seeing new data each time
+        x_real = data[current_row:half_batch + current_row]  # fix so its not 'head' and is seeing new data each time
         y_real = np.ones((half_batch, 16))
+
+        current_row = current_row + half_batch
+        print(current_row)
 
         x_fake = np.array([[]])
         for i in range(half_batch):
