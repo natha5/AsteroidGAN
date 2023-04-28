@@ -123,9 +123,10 @@ VALIDATION_SPLIT = 0.2
 
 def training(generator, discriminator, gan, batch_size, n_epochs, data):
 
-    print("training gan")
+    print("training gan for " + str(n_epochs) + " epochs")
 
     current_row = 0
+
 
     half_batch = int(batch_size / 2)
     for i in range(n_epochs):
@@ -136,7 +137,6 @@ def training(generator, discriminator, gan, batch_size, n_epochs, data):
         y_real = np.ones((half_batch, 16))
 
         current_row = current_row + half_batch
-        print(current_row)
 
         x_fake = np.array([[]])
         for i in range(half_batch):
