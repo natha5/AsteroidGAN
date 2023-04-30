@@ -131,6 +131,7 @@ def training(generator, discriminator, gan, batch_size, n_epochs, data):
         current_row = current_row + half_batch
 
         x_fake = np.array([[]])
+        
         for j in range(half_batch):
             current_fake = generate_fakes()
             x_fake = np.append(x_fake, current_fake)
