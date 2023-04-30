@@ -54,22 +54,25 @@ def make_generator():
 def generate_fakes():
     neo = rand.choice([1, 0])
     pha = rand.choice([1, 0])
-    H = rand.uniform(0, 10000)
-    diameter = rand.uniform(0, 100000)
+    H = rand.uniform(-1.1, 33.2)
+    diameter = rand.uniform(0, 939)
     albedo = rand.uniform(0, 1)
-    e = rand.uniform(0, 0.002)
-    a = rand.uniform(0, 1)
-    q = rand.uniform(0, 1)
-    i = rand.uniform(0, 1)
-    om = rand.uniform(0, 1)
-    w = rand.uniform(0, 2)
-    ad = rand.uniform(0, 0.05)
-    n = rand.uniform(0, 0.01)
-    tp_cal = rand.uniform(0, 100000)
-    per = rand.uniform(0, 10)
-    moid = rand.uniform(0, 0.1)
+    e = rand.uniform(0, 1.86)
+    a = rand.uniform(-14700, 33500)
+    q = rand.uniform(0.07, 80.4)
+    i = rand.uniform(0.1, 175)
+    om = rand.uniform(0, 360)
+    w = rand.uniform(0, 360)
+    ad = rand.uniform(0.65, 6000)
+    n = rand.uniform(0, 1)
+    tp_cal = rand.uniform(15400000, 22600000)
+    per = rand.uniform(151, 10000)
+    moid = rand.uniform(0, 5)
 
     X = np.array([[neo, pha, H, diameter, albedo, e, a, q, i, om, w, ad, n, tp_cal, per, moid]])
+
+    X /= 255
+
     return X
 
 
@@ -131,7 +134,7 @@ def training(generator, discriminator, gan, batch_size, n_epochs, data):
         current_row = current_row + half_batch
 
         x_fake = np.array([[]])
-        
+
         for j in range(half_batch):
             current_fake = generate_fakes()
             x_fake = np.append(x_fake, current_fake)
@@ -158,12 +161,10 @@ def training(generator, discriminator, gan, batch_size, n_epochs, data):
     value_real = np.zeros((1, 16))
     while value_real.all() == 0:
         x_using = generate_fakes()
-
+        print(x_using)
         value = generator.predict(x_using)
         # check value fools discriminator
         value_real = discriminator.predict(value)
-
-    print(value)
 
     return value
 
@@ -176,7 +177,5 @@ def run_program():
     gan.summary()
 
     value_to_use = training(generator, discriminator, gan, BATCH_SIZE, N_EPOCHS, data)
-
-    print(value_to_use)
 
     return value_to_use
