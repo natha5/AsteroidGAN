@@ -179,3 +179,4 @@ def run_program():
     value_to_use = training(generator, discriminator, gan, BATCH_SIZE, N_EPOCHS, data)
 
     return value_to_use
+
