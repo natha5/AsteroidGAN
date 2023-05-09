@@ -1,0 +1,10 @@
+To run the system, Python version 3.11 is required (due to use of features not present in earlier versions). Also, the following Python packages are required to be installed:
+•	Numpy (should be pre-installed)
+•	Pandas
+•	Keras
+•	Tensorflow
+•	PyGame
+These should easily be installed using the command: pip install <package name> on the command line.
+
+
+To experience the full system, simply run the file ‘visualise_data.py’. If the user wishes to change the view displayed, the button ‘view orbit’ should be clicked.
